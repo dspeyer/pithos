@@ -539,7 +539,6 @@ class PithosWindow(Gtk.ApplicationWindow):
         self.player.set_property("uri", self.current_song.audioUrl)
         self.player.set_state(Gst.State.PAUSED)
 
-        self.playing = None
         self.playcount += 1
 
         self.current_song.start_time = time.time()
@@ -855,7 +854,6 @@ class PithosWindow(Gtk.ApplicationWindow):
             if self.playing is None: # Not playing but waiting to
                 logging.debug("Buffer 100%. Song starting")
                 self.play()
-                self.song_started = True
             elif self.playing:
                 logging.debug("Buffer recovery. Restarting pipeline")
                 self.player.set_state(Gst.State.PLAYING)
